@@ -4,112 +4,51 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Agendamentos – Flávia Franco</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet"/>
-<style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-:root {
-  --bg:#f5f3ef;--sidebar-bg:#b5a594;--sidebar-w:56px;--taupe:#b5a594;
-  --taupe-light:#cec0b0;--card-bg:#c9b9a8;--row-bg:#ede8e2;--row-border:#d4c9bc;
-  --text-main:#3a3028;--text-muted:#9e8e7e;--grid-line:#e0dbd4;--white:#ffffff;
-  --header-h:56px;
-}
-html,body{height:100%;font-family:'Raleway',sans-serif;background:var(--bg);}
-.app{display:flex;height:100vh;overflow:hidden;}
-.sidebar{width:var(--sidebar-w);background:var(--sidebar-bg);display:flex;flex-direction:column;align-items:center;padding:16px 0 24px;flex-shrink:0;z-index:10;}
-.sidebar__logo{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400;color:rgba(255,255,255,0.85);margin-bottom:32px;}
-.sidebar__nav{display:flex;flex-direction:column;gap:8px;width:100%;align-items:center;}
-.nav-item{width:38px;height:38px;display:flex;align-items:center;justify-content:center;border-radius:6px;cursor:pointer;transition:background 0.18s;color:rgba(255,255,255,0.75);text-decoration:none;}
-.nav-item:hover{background:rgba(255,255,255,0.18);color:#fff;}
-.nav-item.active{background:rgba(255,255,255,0.25);color:#fff;}
-.nav-item svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.8;}
-.main{flex:1;display:flex;flex-direction:column;overflow:hidden;background:var(--white);}
-.header{height:var(--header-h);display:flex;align-items:center;justify-content:space-between;padding:0 32px;border-bottom:1px solid var(--grid-line);flex-shrink:0;}
-.header__title{font-size:17px;font-weight:400;color:var(--text-main);letter-spacing:0.02em;}
-.header__right{display:flex;align-items:center;gap:12px;}
-.header__admin{font-size:12px;color:var(--text-muted);}
-.header__avatar{width:36px;height:36px;border-radius:50%;background:var(--grid-line);display:flex;align-items:center;justify-content:center;cursor:pointer;}
-.header__avatar svg{width:18px;height:18px;stroke:var(--text-muted);fill:none;stroke-width:1.6;}
-.content{flex:1;padding:24px 28px;overflow:hidden;display:flex;flex-direction:column;}
-.card{flex:1;background:var(--card-bg);border-radius:10px;padding:18px 18px 14px;display:flex;flex-direction:column;overflow:hidden;}
-.toolbar{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:16px;flex-shrink:0;}
-.toolbar__group{display:flex;flex-direction:column;gap:3px;}
-.toolbar__group label{font-size:10px;font-weight:500;letter-spacing:0.08em;color:rgba(255,255,255,0.85);}
-.toolbar__group input,.toolbar__group select{height:30px;width:160px;background:#fff;border:none;border-radius:20px;padding:0 12px;font-family:'Raleway',sans-serif;font-size:12px;color:var(--text-main);outline:none;}
-.btn-new{height:30px;padding:0 16px;background:#fff;border:none;border-radius:20px;font-family:'Raleway',sans-serif;font-size:11px;font-weight:600;letter-spacing:0.06em;color:var(--text-muted);cursor:pointer;white-space:nowrap;}
-.btn-new:hover{background:#f0ece6;}
-.table-wrap{flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:5px;}
-.table-wrap::-webkit-scrollbar{width:5px;}
-.table-wrap::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.3);border-radius:4px;}
-.row{display:flex;align-items:center;background:var(--row-bg);border-radius:20px;padding:0 14px;height:36px;gap:10px;flex-shrink:0;animation:fadeIn 0.3s ease both;}
-@keyframes fadeIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
-.row__bar{flex:1;height:18px;background:var(--row-border);border-radius:10px;overflow:hidden;position:relative;}
-.row__fill{position:absolute;left:0;top:0;bottom:0;border-radius:10px;}
-.row__fill.pendente{background:#e8c97a;}
-.row__fill.confirmado{background:#85b89a;}
-.row__fill.concluido{background:#8fb3c8;}
-.row__fill.cancelado{background:#cc8888;}
-.row__text{position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:11px;color:var(--text-main);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:calc(100% - 20px);}
-.row__actions{display:flex;align-items:center;gap:6px;flex-shrink:0;}
-.row__btn{background:none;border:none;cursor:pointer;padding:2px;color:var(--text-muted);display:flex;align-items:center;justify-content:center;}
-.row__btn svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.6;}
-.estado{text-align:center;padding:32px 0;color:rgba(255,255,255,0.6);font-size:13px;}
-.badge{display:inline-block;font-size:9px;letter-spacing:0.07em;padding:2px 7px;border-radius:10px;font-weight:600;text-transform:uppercase;margin-left:6px;}
-.badge.pendente{background:#f5e4a0;color:#7a6010;}
-.badge.confirmado{background:#b8dfc5;color:#1a5c35;}
-.badge.concluido{background:#b8d4e8;color:#1a3c5c;}
-.badge.cancelado{background:#e8b8b8;color:#6c1a1a;}
-.modal-backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.25);z-index:100;align-items:center;justify-content:center;}
-.modal-backdrop.open{display:flex;}
-.modal{background:#fff;border-radius:10px;padding:28px 28px 22px;width:340px;box-shadow:0 16px 48px rgba(0,0,0,0.18);}
-.modal__title{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:400;color:var(--text-main);margin-bottom:20px;}
-.modal__field{margin-bottom:14px;}
-.modal__field label{display:block;font-size:10px;letter-spacing:0.08em;color:var(--text-muted);margin-bottom:5px;}
-.modal__field input,.modal__field select{width:100%;height:34px;border:1px solid var(--grid-line);border-radius:6px;padding:0 10px;font-family:'Raleway',sans-serif;font-size:13px;color:var(--text-main);outline:none;}
-.modal__actions{display:flex;gap:10px;justify-content:flex-end;margin-top:20px;}
-.modal__btn{height:32px;padding:0 18px;border:none;border-radius:6px;font-family:'Raleway',sans-serif;font-size:12px;font-weight:500;cursor:pointer;}
-.modal__btn--cancel{background:var(--grid-line);color:var(--text-muted);}
-.modal__btn--save{background:var(--taupe);color:#fff;}
-.modal__btn:disabled{opacity:0.6;cursor:not-allowed;}
-.modal__erro{font-size:11px;color:#b04040;margin-top:8px;display:none;}
-.modal__erro.visivel{display:block;}
-</style>
+<link rel="stylesheet" href="style/style.css"/>
+<link rel="stylesheet" href="style/agendamentos.css"/>
 </head>
 <body>
-<div class="app">
-  <aside class="sidebar">
-    <div class="sidebar__logo">F|</div>
-    <nav class="sidebar__nav">
-      <a class="nav-item active" href="agendamentos.html" title="Agendamentos">
+<div class="admin-app">
+
+  <!-- Sidebar -->
+  <aside class="admin-sidebar">
+    <div class="admin-sidebar__logo">F|</div>
+    <nav class="admin-sidebar__nav">
+      <a class="admin-nav-item active" href="agendamentos.html" title="Agendamentos">
         <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="3" rx="1"/><rect x="3" y="10.5" width="18" height="3" rx="1"/><rect x="3" y="17" width="18" height="3" rx="1"/></svg>
       </a>
-      <a class="nav-item" href="home.html" title="Site">
+      <a class="admin-nav-item" href="grafico.html" title="Gráficos">
+        <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      </a>
+      <a class="admin-nav-item" href="home.html" title="Ver site">
         <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
       </a>
-      <a class="nav-item" href="#" title="Sair" onclick="sair()">
+      <a class="admin-nav-item" href="#" title="Sair" onclick="sair()">
         <svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
       </a>
     </nav>
   </aside>
 
-  <div class="main">
-    <header class="header">
-      <span class="header__title">Agendamentos</span>
-      <div class="header__right">
-        <span class="header__admin" id="nomeAdmin"></span>
-        <div class="header__avatar">
+  <!-- Main -->
+  <div class="admin-main">
+    <header class="admin-header">
+      <span class="admin-header__title">Agendamentos</span>
+      <div class="admin-header__right">
+        <span class="admin-header__nome" id="nomeAdmin"></span>
+        <div class="admin-header__avatar">
           <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
         </div>
       </div>
     </header>
 
-    <div class="content">
-      <div class="card">
-        <div class="toolbar">
-          <div class="toolbar__group">
+    <div class="admin-content">
+      <div class="admin-card">
+        <div class="admin-toolbar">
+          <div class="admin-toolbar__group">
             <label>Nome</label>
             <input type="text" id="filterNome" placeholder="" oninput="filtrarLocal()"/>
           </div>
-          <div class="toolbar__group">
+          <div class="admin-toolbar__group">
             <label>Status</label>
             <select id="filterStatus" onchange="carregarAgendamentos()">
               <option value="">Todos</option>
@@ -119,61 +58,48 @@ html,body{height:100%;font-family:'Raleway',sans-serif;background:var(--bg);}
               <option value="cancelado">Cancelado</option>
             </select>
           </div>
-          <button class="btn-new" onclick="openModal()">+ Novo horário</button>
+          <button class="admin-btn-new" onclick="openModal()">+ Novo horário</button>
         </div>
-        <div class="table-wrap" id="tableWrap">
-          <p class="estado">Carregando...</p>
+        <div class="admin-table-wrap" id="tableWrap">
+          <p class="admin-estado">Carregando...</p>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<div class="modal-backdrop" id="modalBackdrop">
-  <div class="modal">
-    <div class="modal__title">Criar horários disponíveis</div>
-    <div class="modal__field">
-      <label>SERVIÇO</label>
-      <select id="mServico"></select>
-    </div>
-    <div class="modal__field">
-      <label>DATA</label>
-      <input type="date" id="mData"/>
-    </div>
-    <div class="modal__field">
-      <label>HORÁRIOS (separados por vírgula)</label>
-      <input type="text" id="mSlots" placeholder="08:00, 09:00, 10:00"/>
-    </div>
-    <p class="modal__erro" id="modalErro"></p>
-    <div class="modal__actions">
-      <button class="modal__btn modal__btn--cancel" onclick="closeModal()">Cancelar</button>
-      <button class="modal__btn modal__btn--save" id="btnSalvar" onclick="salvarHorarios()">Criar</button>
+<!-- Modal -->
+<div class="admin-modal-backdrop" id="modalBackdrop">
+  <div class="admin-modal">
+    <div class="admin-modal__title">Criar horários disponíveis</div>
+    <div class="admin-modal__field"><label>SERVIÇO</label><select id="mServico"></select></div>
+    <div class="admin-modal__field"><label>DATA</label><input type="date" id="mData"/></div>
+    <div class="admin-modal__field"><label>HORÁRIOS (separados por vírgula)</label><input type="text" id="mSlots" placeholder="08:00, 09:00, 10:00"/></div>
+    <p class="admin-modal__erro" id="modalErro"></p>
+    <div class="admin-modal__actions">
+      <button class="admin-modal__btn admin-modal__btn--cancel" onclick="closeModal()">Cancelar</button>
+      <button class="admin-modal__btn admin-modal__btn--save" id="btnSalvar" onclick="salvarHorarios()">Criar</button>
     </div>
   </div>
 </div>
 
 <script>
 const API_URL = "http://localhost:3000/api";
-
 if (!localStorage.getItem("token_admin")) window.location.href = "login.html";
 document.getElementById("nomeAdmin").textContent = localStorage.getItem("admin_nome") || "";
-
 let todosAgendamentos = [];
 
-async function apiFetch(path, options = {}) {
+async function apiFetch(path, options={}) {
   const token = localStorage.getItem("token_admin");
-  const headers = { "Content-Type": "application/json" };
+  const headers = {"Content-Type":"application/json"};
   if (token) headers["Authorization"] = `Bearer ${token}`;
-  const res  = await fetch(`${API_URL}${path}`, { ...options, headers });
+  const res  = await fetch(`${API_URL}${path}`, {...options, headers});
   const data = await res.json();
-  if (!res.ok) throw new Error(data.erro || "Erro");
+  if (!res.ok) throw new Error(data.erro||"Erro");
   return data;
 }
 
-function fmt(dateStr) {
-  if (!dateStr) return "";
-  return new Date(dateStr).toLocaleDateString("pt-BR");
-}
+function fmt(d) { return d ? new Date(d).toLocaleDateString("pt-BR") : ""; }
 
 function filtrarLocal() {
   const f = document.getElementById("filterNome").value.toLowerCase();
@@ -182,24 +108,22 @@ function filtrarLocal() {
 
 function renderRows(lista) {
   const wrap = document.getElementById("tableWrap");
-  if (!lista.length) { wrap.innerHTML = '<p class="estado">Nenhum agendamento encontrado.</p>'; return; }
+  if (!lista.length) { wrap.innerHTML='<p class="admin-estado">Nenhum agendamento encontrado.</p>'; return; }
   wrap.innerHTML = "";
-  lista.forEach((a, i) => {
-    const horario = a.horario_id || {};
-    const servico = horario.servico_id || {};
-    const status  = a.status || "pendente";
-    const fill    = { pendente:55, confirmado:75, concluido:95, cancelado:40 }[status] || 55;
+  lista.forEach((a,i) => {
+    const h = a.horario_id||{}, s = h.servico_id||{};
+    const status = a.status||"pendente";
+    const fill = {pendente:55,confirmado:75,concluido:95,cancelado:40}[status]||55;
     const row = document.createElement("div");
-    row.className = "row";
-    row.style.animationDelay = `${i*25}ms`;
-    row.innerHTML = `
-      <div class="row__bar">
-        <div class="row__fill ${status}" style="width:${fill}%"></div>
-        <span class="row__text">${a.paciente_nome} · ${fmt(horario.data)} ${horario.hora_inicio||""} · ${servico.nome||"—"} <span class="badge ${status}">${status}</span></span>
+    row.className="admin-row"; row.style.animationDelay=`${i*25}ms`;
+    row.innerHTML=`
+      <div class="admin-row__bar">
+        <div class="admin-row__fill ${status}" style="width:${fill}%"></div>
+        <span class="admin-row__text">${a.paciente_nome} · ${fmt(h.data)} ${h.hora_inicio||""} · ${s.nome||"—"} <span class="admin-badge ${status}">${status}</span></span>
       </div>
-      <div class="row__actions">
-        ${status==="pendente"?`<button class="row__btn" title="Confirmar" onclick="mudarStatus('${a._id}','confirmado')"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></button>`:""}
-        ${["pendente","confirmado"].includes(status)?`<button class="row__btn" title="Cancelar" onclick="mudarStatus('${a._id}','cancelado')"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>`:""}
+      <div class="admin-row__actions">
+        ${status==="pendente"?`<button class="admin-row__btn" onclick="mudarStatus('${a._id}','confirmado')" title="Confirmar"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></button>`:""}
+        ${["pendente","confirmado"].includes(status)?`<button class="admin-row__btn danger" onclick="mudarStatus('${a._id}','cancelado')" title="Cancelar"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>`:""}
       </div>`;
     wrap.appendChild(row);
   });
@@ -207,60 +131,45 @@ function renderRows(lista) {
 
 async function carregarAgendamentos() {
   const status = document.getElementById("filterStatus").value;
-  document.getElementById("tableWrap").innerHTML = '<p class="estado">Carregando...</p>';
+  document.getElementById("tableWrap").innerHTML='<p class="admin-estado">Carregando...</p>';
   try {
     todosAgendamentos = await apiFetch(`/admin/agendamentos${status?`?status=${status}`:""}`);
     filtrarLocal();
-  } catch (err) {
-    if (err.message.includes("Token")) sair();
-    else document.getElementById("tableWrap").innerHTML = '<p class="estado">Erro ao carregar. Servidor está rodando?</p>';
+  } catch(err) {
+    if(err.message.includes("Token")) sair();
+    else document.getElementById("tableWrap").innerHTML='<p class="admin-estado">Erro ao carregar. Servidor está rodando?</p>';
   }
 }
 
-async function mudarStatus(id, status) {
-  try {
-    await apiFetch(`/admin/agendamentos/${id}`, { method: "PATCH", body: JSON.stringify({ status }) });
-    await carregarAgendamentos();
-  } catch (err) { alert("Erro: " + err.message); }
+async function mudarStatus(id,status) {
+  try { await apiFetch(`/admin/agendamentos/${id}`,{method:"PATCH",body:JSON.stringify({status})}); await carregarAgendamentos(); }
+  catch(err) { alert("Erro: "+err.message); }
 }
 
 async function openModal() {
   document.getElementById("modalBackdrop").classList.add("open");
   try {
     const servicos = await apiFetch("/servicos");
-    document.getElementById("mServico").innerHTML = servicos.map(s => `<option value="${s._id}" data-dur="${s.duracao_min}">${s.nome}</option>`).join("");
-  } catch {}
+    document.getElementById("mServico").innerHTML = servicos.map(s=>`<option value="${s._id}" data-dur="${s.duracao_min}">${s.nome}</option>`).join("");
+  } catch{}
 }
 
-function closeModal() {
-  document.getElementById("modalBackdrop").classList.remove("open");
-  document.getElementById("modalErro").classList.remove("visivel");
-}
+function closeModal() { document.getElementById("modalBackdrop").classList.remove("open"); }
 
 async function salvarHorarios() {
-  const el  = document.getElementById("mServico");
-  const sid = el.value;
-  const dur = parseInt(el.selectedOptions[0]?.dataset.dur || 60);
-  const data = document.getElementById("mData").value;
-  const slots = document.getElementById("mSlots").value.split(",").map(s=>s.trim()).filter(Boolean);
-  const erro  = document.getElementById("modalErro");
-  const btn   = document.getElementById("btnSalvar");
-  if (!data || !slots.length) { erro.textContent="Preencha data e horários."; erro.classList.add("visivel"); return; }
-  btn.disabled = true; btn.textContent = "Criando...";
-  try {
-    const r = await apiFetch("/admin/horarios", { method:"POST", body: JSON.stringify({ servico_id:sid, data, slots, duracao_min:dur }) });
-    alert(r.mensagem); closeModal();
-  } catch (err) { erro.textContent = err.message; erro.classList.add("visivel"); }
-  finally { btn.disabled=false; btn.textContent="Criar"; }
+  const el=document.getElementById("mServico"), sid=el.value, dur=parseInt(el.selectedOptions[0]?.dataset.dur||60);
+  const data=document.getElementById("mData").value;
+  const slots=document.getElementById("mSlots").value.split(",").map(s=>s.trim()).filter(Boolean);
+  const erro=document.getElementById("modalErro"), btn=document.getElementById("btnSalvar");
+  if(!data||!slots.length){erro.textContent="Preencha data e horários.";erro.style.display="block";return;}
+  btn.disabled=true; btn.textContent="Criando..."; erro.style.display="none";
+  try { const r=await apiFetch("/admin/horarios",{method:"POST",body:JSON.stringify({servico_id:sid,data,slots,duracao_min:dur})}); alert(r.mensagem); closeModal(); }
+  catch(err){erro.textContent=err.message;erro.style.display="block";}
+  finally{btn.disabled=false;btn.textContent="Criar";}
 }
 
-function sair() {
-  localStorage.removeItem("token_admin");
-  localStorage.removeItem("admin_nome");
-  window.location.href = "login.html";
-}
-
-document.getElementById("modalBackdrop").addEventListener("click", function(e) { if(e.target===this) closeModal(); });
+function sair() { localStorage.removeItem("token_admin"); localStorage.removeItem("admin_nome"); window.location.href="login.html"; }
+document.getElementById("modalBackdrop").addEventListener("click",function(e){if(e.target===this)closeModal();});
 carregarAgendamentos();
 </script>
 </body>

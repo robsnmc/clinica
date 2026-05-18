@@ -1,253 +1,95 @@
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+/* ============================================================
+   home.css — Página inicial
+   ============================================================ */
 
-body {
-  font-family: "Raleway", sans-serif;
-  background: #dcdbd6;
-  overflow-x: hidden;
+/* ── HERO ── */
+.hero { background: var(--bg); padding: 60px 0 40px; }
+.hero-container {
+  max-width: 1100px; margin: 0 auto; padding: 0 32px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center;
 }
-
-/* ── HEADER ─────────────────────────────────────── */
-.header {
-  display: flex;
-  flex-direction: row;
-  margin-top: 3rem;
-  align-items: center;
+.hero-text h1 {
+  font-family: var(--serif); font-size: 52px; font-weight: 300;
+  line-height: 1.1; color: var(--text); margin-bottom: 20px;
 }
-
-.header .logo {
-  margin: 0 20rem 0 15rem;
+.hero-text p {
+  font-size: 14px; color: var(--text-muted); line-height: 1.7;
+  margin-bottom: 32px; max-width: 380px;
 }
+.hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
 
-.nav-header {
-  display: flex;
-  gap: 40px;
-  align-items: center;
+/* Imagem + badge + card */
+.hero-image { position: relative; }
+.hero-image > img { width: 100%; border-radius: 4px; }
+.hero-badge {
+  position: absolute; bottom: 120px; left: -20px;
+  background: var(--white); border-radius: 50px;
+  padding: 10px 20px; display: flex; flex-direction: column;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
 }
-
-.nav-header a {
-  text-decoration: none;
-  font-size: 20px;
-  color: black;
+.badge-name { font-size: 13px; font-weight: 600; color: var(--text); }
+.badge-title { font-size: 11px; color: var(--text-muted); }
+.hero-card {
+  position: absolute; bottom: 20px; right: -20px;
+  background: var(--white); border-radius: 12px;
+  padding: 16px; max-width: 240px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+  display: flex; gap: 12px; align-items: flex-start;
 }
+.hero-card-content { flex: 1; }
+.hero-card-content strong { font-size: 13px; font-weight: 600; color: var(--text); display: block; margin-bottom: 6px; }
+.hero-card-content p { font-size: 11px; color: var(--text-muted); line-height: 1.5; margin-bottom: 8px; }
+.hero-card-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+.hero-card-tags span { font-size: 10px; color: var(--text-muted); background: var(--bg-light); padding: 3px 8px; border-radius: 50px; }
+.hero-card > img { width: 60px; height: 60px; object-fit: contain; flex-shrink: 0; }
 
-/* ── HERO ────────────────────────────────────────── */
-.content {
-  display: flex;
-  margin-top: 5rem;
-  position: absolute;
+/* ── STATS ── */
+.stats { background: var(--bg); padding: 40px 0 60px; }
+.stats-grid { display: flex; gap: 60px; }
+.stat h2 { font-family: var(--serif); font-size: 48px; font-weight: 400; color: var(--text); }
+.stat p { font-size: 13px; color: var(--text-muted); margin-top: 4px; }
+
+/* ── CTA BANNER ── */
+.cta-banner {
+  position: relative; overflow: hidden;
+  background-image: url('../img/foto-clinica-home.svg');
+  background-size: cover; background-position: center;
+  min-height: 400px;
 }
-
-.content .image img {
-  width: 600px;
-  margin-left: 2rem;
+.cta-overlay {
+  background: rgba(181,165,148,0.88);
+  min-height: 400px; display: flex;
+  align-items: center; justify-content: center;
+  gap: 40px; padding: 60px 32px;
 }
-
-.content .text {
-  margin: 0 10rem 0 15rem;
+.cta-text { text-align: center; max-width: 560px; }
+.cta-text p {
+  font-family: var(--serif); font-size: 28px; font-weight: 300;
+  color: var(--white); line-height: 1.4; margin-bottom: 32px;
 }
-
-.content .text h1 {
-  font-size: 60px;
-  font-weight: 400;
-  margin-bottom: 1rem;
+.btn-cta {
+  display: inline-block; background: var(--white); color: var(--text);
+  padding: 14px 36px; border-radius: 50px;
+  font-size: 13px; font-weight: 500; letter-spacing: 0.06em; transition: all 0.2s;
 }
+.btn-cta:hover { background: var(--bg-light); }
+.cta-decorativo { display: flex; flex-direction: column; gap: 12px; opacity: 0.4; }
+.deco-rect { border: 2px solid var(--white); border-radius: 8px; }
+.deco-rect-1 { width: 70px; height: 70px; }
+.deco-rect-2 { width: 50px; height: 50px; }
+.deco-rect-3 { width: 50px; height: 50px; }
+.deco-rect-4 { width: 70px; height: 70px; }
 
-.content .text p {
-  font-size: 24px;
-  color: #1c1c1c;
+/* ── RESPONSIVO HOME ── */
+@media (max-width: 900px) {
+  .hero-container { grid-template-columns: 1fr; gap: 40px; }
+  .hero-text h1 { font-size: 38px; }
+  .hero-badge { display: none; }
+  .hero-card { position: relative; bottom: auto; right: auto; margin-top: 16px; max-width: 100%; }
+  .cta-decorativo { display: none; }
 }
-
-.content-links {
-  display: flex;
-  margin-top: 60px;
-  gap: 15px;
-}
-
-.btn-protocolos {
-  background-color: #ab96807c;
-  padding: 15px 20px;
-  border-radius: 50px;
-  font-size: 18px;
-  text-decoration: none;
-  color: black;
-}
-
-.btn-consulta {
-  padding: 15px 20px;
-  border: 1px solid black;
-  border-radius: 50px;
-  font-size: 18px;
-  text-decoration: none;
-  color: black;
-}
-
-/* ── STATS + MÁQUINA ─────────────────────────────── */
-.infos-content {
-  display: flex;
-  margin: 42rem 0 0 0;
-}
-
-.stats {
-  display: flex;
-  gap: 50px;
-  margin: 5rem 0 0 15rem;
-}
-
-.stat h1 {
-  font-size: 40px;
-  font-weight: 500;
-}
-
-.stat h2 {
-  font-size: 20px;
-  font-weight: 400;
-}
-
-.infoMaquina {
-  display: flex;
-  background-color: white;
-  padding: 20px 30px;
-  border-radius: 10px;
-  position: absolute;
-  margin-left: 45rem;
-}
-
-.info-column {
-  display: flex;
-  flex-direction: column;
-  background-color: white;
-}
-
-.info-column a {
-  text-decoration: none;
-  color: black;
-}
-
-.info-column p {
-  font-size: 18px;
-  color: #1c1c1c;
-  margin-bottom: 25px;
-}
-
-.info-column h1 {
-  font-size: 32px;
-  color: #1c1c1c;
-  font-weight: 400;
-  margin: 10px 0 15px 0;
-}
-
-.infoMaquina img {
-  background-color: white;
-  margin-left: 30px;
-}
-
-/* ── RETÂNGULO MARROM ────────────────────────────── */
-.img-retangulo {
-  position: relative;
-  width: 75%;
-  max-width: 980px;
-  min-height: 280px;
-  border-radius: 16px;
-  background-color: #ab9680;
-  margin: 10rem auto 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 60px 120px;
-  text-align: center;
-  overflow: hidden;
-}
-
-.img-retangulo p {
-  font-family: "Raleway", sans-serif;
-  font-size: 26px;
-  font-weight: 300;
-  color: rgba(255, 255, 255, 0.95);
-  line-height: 1.55;
-  max-width: 560px;
-  margin-bottom: 36px;
-}
-
-.btn-servicos {
-  display: inline-block;
-  background: #fff;
-  color: #7a6a5a;
-  font-family: "Raleway", sans-serif;
-  font-size: 15px;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  padding: 14px 32px;
-  border-radius: 50px;
-  text-decoration: none;
-  transition: background 0.2s, box-shadow 0.2s;
-}
-
-.btn-servicos:hover {
-  background: #f0ece6;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
-}
-
-/* Quadrados decorativos — esquerda */
-.img-retangulo::before {
-  content: "";
-  position: absolute;
-  left: 36px;
-  top: 50%;
-  transform: translateY(-60%);
-  width: 68px;
-  height: 68px;
-  border: 2px solid rgba(255, 255, 255, 0.4);
-  border-radius: 10px;
-  box-shadow: 20px 20px 0 0 rgba(255, 255, 255, 0.2);
-}
-
-/* Quadrados decorativos — direita */
-.img-retangulo::after {
-  content: "";
-  position: absolute;
-  right: 36px;
-  top: 50%;
-  transform: translateY(-60%);
-  width: 68px;
-  height: 68px;
-  border: 2px solid rgba(255, 255, 255, 0.4);
-  border-radius: 10px;
-  box-shadow: -20px 20px 0 0 rgba(255, 255, 255, 0.2);
-}
-
-/* ── FOTO CLÍNICA ────────────────────────────────── */
-.img-clinica {
-  margin-top: 15rem;
-  width: 100%;
-  display: block;
-}
-
-/* ── WRAPPER DA SEÇÃO FINAL ──────────────────────── */
-.secao-final {
-  position: relative;
-  margin-top: 10rem;
-}
-
-.img-retangulo {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 75%;
-  max-width: 980px;
-  z-index: 2;
-  margin: 0; /* remova o margin-top que estava antes */
-}
-
-.img-clinica {
-  width: 100%;
-  display: block;
-  margin-top: 0; /* remova o margin-top anterior */
+@media (max-width: 640px) {
+  .hero-text h1 { font-size: 32px; }
+  .stats-grid { gap: 32px; }
+  .stat h2 { font-size: 36px; }
 }

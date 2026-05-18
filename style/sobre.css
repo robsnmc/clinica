@@ -1,0 +1,47 @@
+/* ============================================================
+   sobre.css — Página Quem Somos
+   ============================================================ */
+
+/* ── HERO FOTO EQUIPE ── */
+.sobre-hero { width: 100%; overflow: hidden; }
+.sobre-hero-img {
+  width: 100%; max-height: 520px;
+  object-fit: cover; object-position: center top;
+  display: block;
+}
+
+/* ── QUEM SOMOS ── */
+.quem-somos { background: var(--white); padding: 64px 0; }
+.quem-somos h2 {
+  font-family: var(--serif); font-size: 36px; font-weight: 400;
+  text-align: center; margin-bottom: 40px; color: var(--text);
+}
+.quem-somos-text { max-width: 780px; }
+.quem-somos-text p {
+  font-size: 14px; color: var(--text-muted);
+  line-height: 1.85; margin-bottom: 22px;
+}
+.quem-somos-text p:last-child { margin-bottom: 0; }
+
+/* ── NOSSO LOCAL ── */
+.nosso-local { background: var(--white); padding: 0 0 72px; }
+.nosso-local .container h2 {
+  font-family: var(--serif); font-size: 36px; font-weight: 400;
+  text-align: center; margin-bottom: 32px; color: var(--text);
+  padding-top: 8px;
+}
+.local-img-wrapper { width: 100%; overflow: hidden; }
+.local-img-wrapper img {
+  width: 100%; max-height: 480px;
+  object-fit: cover; object-position: center;
+}
+
+/* ── RESPONSIVO SOBRE ── */
+@media (max-width: 640px) {
+  .quem-somos { padding: 48px 0; }
+  .quem-somos h2 { font-size: 28px; }
+  .quem-somos-text p { font-size: 13px; }
+  .nosso-local .container h2 { font-size: 28px; }
+  .sobre-hero-img { max-height: 320px; }
+  .local-img-wrapper img { max-height: 300px; }
+}

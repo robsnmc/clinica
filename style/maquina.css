@@ -1,84 +1,52 @@
-.conteudo-maquina {
-    margin: 7rem 0 7rem 7rem;
+/* ============================================================
+   maquina.css — Página Oxigenoterapia Hiperbárica
+   ============================================================ */
+
+/* ── HERO MÁQUINA ── */
+.maquina-hero { background: var(--bg); padding: 60px 0 72px; }
+.maquina-hero-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 60px; align-items: center;
+}
+.maquina-hero-text h1 {
+  font-family: var(--serif); font-size: 40px; font-weight: 300;
+  color: var(--text); line-height: 1.2; margin-bottom: 16px;
+}
+.maquina-divider {
+  width: 60px; height: 2px;
+  background: var(--taupe); margin: 20px 0;
+}
+.maquina-hero-text p {
+  font-size: 14px; color: var(--text-muted);
+  line-height: 1.85; margin-bottom: 18px; text-align: center;
+}
+.maquina-hero-text p:last-child { margin-bottom: 0; }
+.maquina-hero-img img { width: 100%; }
+
+/* ── BENEFÍCIOS ── */
+.beneficios { background: var(--taupe-light); padding: 64px 0; }
+.beneficios-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+}
+.beneficio-card {
+  background: var(--white); border-radius: 8px; padding: 22px;
+}
+.beneficio-card h3 {
+  font-size: 13px; font-weight: 600; color: var(--text);
+  margin-bottom: 12px; line-height: 1.4;
+}
+.beneficio-card p {
+  font-size: 12px; color: var(--text-muted); line-height: 1.75;
 }
 
-.text-maquina {
-    display: flex;
+/* ── RESPONSIVO MÁQUINA ── */
+@media (max-width: 900px) {
+  .maquina-hero-grid { grid-template-columns: 1fr; gap: 40px; }
+  .beneficios-grid { grid-template-columns: repeat(2, 1fr); }
 }
-
-.texto {
-    margin: 5rem 0 0 2rem;
-}
-
-.hiperbarica {
-    margin-left: 13rem;
-}
-
-.risco {
-    margin: 1rem 0 5rem 0;
-}
-
-.text-maquina h1 {
-    font-size: 40px;
-    font-weight: 400;
-    margin-left: 1.5rem;
-}
-
-.text-maquina p {
-    display: flex;
-    text-align: center;
-    font-size: 20px;
-}
-
-#section-cards {
-    background-color: #ab968079;
-    padding: 5rem 7rem;
-    display: flex;
-    flex-direction: column;
-    gap: 5rem;
-}
-
-#section-cards h1 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #AB9680;
-    width: 250px;
-    height: 150px;
-    border-radius: 10px;
-    font-size: 30px;
-    font-weight: 400;
-    padding-left: 1rem;
-}
-
-#section-cards p {
-    font-size: 23px;
-}
-
-.cards {
-    background-color: #00000000;
-    display: flex;
-    justify-content: space-between;
-}
-
-.card {
-    border-radius: 10px;
-}
-
-.card-title {
-    padding: 1.5rem;
-}
-
-.card-content {
-    width: 290px;
-    height: 400px;
-}
-
-.card-content {
-    width: 200px;
-    padding: 0 0 0 2rem;
-}
-
-.card-content p {
-    font-size: 25px !important;
+@media (max-width: 640px) {
+  .maquina-hero-text h1 { font-size: 30px; }
+  .beneficios-grid { grid-template-columns: 1fr; }
+  .maquina-hero { padding: 40px 0 48px; }
+  .beneficios { padding: 48px 0; }
 }
