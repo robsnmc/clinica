@@ -73,3 +73,12 @@
     width: 290px;
     height: 400px;
 }
+
+.card-content {
+    width: 200px;
+    padding: 0 0 0 2rem;
+}
+
+.card-content p {
+    font-size: 25px !important;
+}
